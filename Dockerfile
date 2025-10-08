@@ -1,13 +1,16 @@
 FROM php:8.2-apache
 
-# Install required PHP extensions
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Copy all project files to Apache's web directory
+
 COPY . /var/www/html/
 
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
+WORKDIR /var/www/html/PHP_PROJECT/Project_root
 
-# Expose port 80
+RUN docker-php-ext-install pdo pdo_mysql
+
+
 EXPOSE 80
+
+CMD ["apache2-foreground"]
